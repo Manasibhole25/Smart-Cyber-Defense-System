@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCDS — Smart Cybersecurity Detection System</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">🛡</div>
+    <div>
+      <div class="logo-text">SCDS</div>
+      <div class="logo-sub">Threat Intelligence Platform</div>
+    </div>
+  </div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">TERMINAL</a></li>
+      <li><a href="dashboard.html">DASHBOARD</a></li>
+    </ul>
+  </nav>
+  <div class="status-indicator">
+    <div class="status-dot"></div>
+    SYSTEM ONLINE
+  </div>
+</header>
+
+<main class="main">
+  <section class="hero">
+    <div class="hero-badge">◈ SCDS v2.1 — NEURAL THREAT ENGINE ACTIVE</div>
+    <h1 class="glitch">SMART <span>CYBER</span><br>DETECTION SYSTEM</h1>
+    <p>Real-time threat analysis using graph-based network intrusion detection and intelligent password security scoring with fusion threat engine.</p>
+  </section>
+
+  <div class="container" style="padding-bottom: 4rem;">
+
+    <!-- STEP FLOW -->
+    <div class="step-flow" id="stepFlow">
+      <div class="step active" id="step1">
+        <div class="step-num">1</div>
+        <div class="step-label">REGISTER</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step" id="step2">
+        <div class="step-num">2</div>
+        <div class="step-label">PASSWORD SCAN</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step" id="step3">
+        <div class="step-num">3</div>
+        <div class="step-label">NETWORK SCAN</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step" id="step4">
+        <div class="step-num">4</div>
+        <div class="step-label">THREAT FUSION</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step" id="step5">
+        <div class="step-num">5</div>
+        <div class="step-label">DECISION</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('register')">⬡ REGISTER USER</button>
+      <button class="tab-btn" onclick="switchTab('login')">⬡ LOGIN CHECK</button>
+    </div>
+
+    <!-- REGISTER TAB -->
+    <div class="tab-content active" id="tab-register">
+      <div class="grid-2">
+
+        <!-- REGISTER FORM -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">👤</span>
+            <div>
+              <div class="card-title">USER REGISTRATION</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>EMAIL ADDRESS</label>
+            <input type="email" id="reg-email" placeholder="operator@scds.io" />
+          </div>
+          <div class="form-group">
+            <label>PASSWORD</label>
+            <input type="password" id="reg-password" placeholder="Enter password to analyze" oninput="previewStrength(this.value)" />
+            <div class="strength-bar-wrapper" style="margin-top:10px;">
+              <div class="strength-bar-track"><div class="strength-bar-fill" id="previewBar"></div></div>
+              <div class="strength-label"><span id="previewLabel">Awaiting input...</span><span id="previewScore"></span></div>
+            </div>
+          </div>
+          <div id="reg-alert" class="alert"></div>
+          <button class="btn btn-primary btn-full" onclick="registerUser()">
+            <div class="spinner" id="reg-spinner"></div>
+            INITIATE SECURITY SCAN
+          </button>
+        </div>
+
+        <!-- PASSWORD ANALYSIS RESULT -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">🔐</span>
+            <div><div class="card-title">PASSWORD ANALYSIS</div></div>
+          </div>
+          <div id="pwd-result">
+            <div style="color:var(--text-dim);font-family:var(--font-mono);font-size:0.75rem;text-align:center;padding:2rem 0;">
+              Awaiting password scan...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NETWORK ANALYSIS -->
+      <div class="grid-2" id="network-section" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">🌐</span>
+            <div><div class="card-title">NETWORK ACTIVITY INPUT</div></div>
+          </div>
+          <div class="grid-2" style="gap:1rem;margin:0;">
+            <div class="form-group">
+              <label>IP ADDRESS</label>
+              <input type="text" id="ip" value="192.168.1.100" />
+            </div>
+            <div class="form-group">
+              <label>REQUESTS / MIN</label>
+              <input type="number" id="rpm" value="45" />
+            </div>
+            <div class="form-group">
+              <label>FAILED LOGINS</label>
+              <input type="number" id="failed" value="2" />
+            </div>
+            <div class="form-group">
+              <label>CONNECTION DEGREE</label>
+              <input type="number" id="conn" value="8" />
+            </div>
+            <div class="form-group">
+              <label>LOGIN HOUR (0-23)</label>
+              <input type="number" id="hour" value="14" min="0" max="23" />
+            </div>
+            <div class="form-group">
+              <label>LOCATION JUMP</label>
+              <select id="locjump">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>CURRENT LOCATION</label>
+              <input type="text" id="curloc" value="Mumbai" />
+            </div>
+            <div class="form-group">
+              <label>PREVIOUS LOCATION</label>
+              <input type="text" id="prevloc" value="Mumbai" />
+            </div>
+          </div>
+          <br/>
+          <button class="btn btn-primary btn-full" onclick="analyzeNetwork()">
+            <div class="spinner" id="net-spinner"></div>
+            RUN NETWORK SCAN
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">📡</span>
+            <div><div class="card-title">NETWORK THREAT RESULT</div></div>
+          </div>
+          <div id="net-result">
+            <div style="color:var(--text-dim);font-family:var(--font-mono);font-size:0.75rem;text-align:center;padding:2rem 0;">
+              Awaiting network scan...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FUSION RESULT -->
+      <div class="card" id="fusion-section" style="display:none;">
+        <div class="card-header">
+          <span class="card-icon">⚡</span>
+          <div><div class="card-title">FUSION THREAT ENGINE — FINAL VERDICT</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:200px 1fr;gap:2rem;align-items:start;">
+          <div class="threat-ring">
+            <div class="ring-container">
+              <svg class="ring-svg" width="140" height="140" viewBox="0 0 140 140">
+                <circle class="ring-track" cx="70" cy="70" r="56"/>
+                <circle class="ring-fill" id="ringFill" cx="70" cy="70" r="56"
+                  stroke-dasharray="351.86"
+                  stroke-dashoffset="351.86"
+                  stroke="var(--neon-cyan)"/>
+              </svg>
+              <div class="ring-text">
+                <div class="ring-number" id="ringNum" style="color:var(--neon-cyan)">0</div>
+                <div class="ring-sub">THREAT SCORE</div>
+              </div>
+            </div>
+            <div id="fusionBadge"></div>
+          </div>
+          <div>
+            <div id="fusion-result"></div>
+            <div class="terminal" id="fusionTerminal" style="margin-top:1rem;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGIN TAB -->
+    <div class="tab-content" id="tab-login">
+      <div style="max-width:480px;margin:0 auto;">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">🔒</span>
+            <div><div class="card-title">AUTHENTICATION CHECK</div></div>
+          </div>
+          <div class="form-group">
+            <label>EMAIL ADDRESS</label>
+            <input type="email" id="login-email" placeholder="operator@scds.io" />
+          </div>
+          <div class="form-group">
+            <label>PASSWORD</label>
+            <input type="password" id="login-password" placeholder="Enter password" />
+          </div>
+          <div id="login-alert" class="alert"></div>
+          <button class="btn btn-primary btn-full" onclick="loginUser()">
+            <div class="spinner" id="login-spinner"></div>
+            AUTHENTICATE
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  ◈ SCDS — SMART CYBERSECURITY DETECTION SYSTEM ◈ ALL RIGHTS RESERVED ◈ THREAT INTELLIGENCE ACTIVE
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

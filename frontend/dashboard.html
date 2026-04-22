@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SCDS — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">🛡</div>
+    <div>
+      <div class="logo-text">SCDS</div>
+      <div class="logo-sub">Threat Intelligence Platform</div>
+    </div>
+  </div>
+  <nav><ul class="nav-links">
+    <li><a href="index.html">TERMINAL</a></li>
+    <li><a href="dashboard.html" class="active">DASHBOARD</a></li>
+  </ul></nav>
+  <div class="status-indicator">
+    <div class="status-dot"></div>
+    LIVE FEED
+  </div>
+</header>
+
+<main class="main" style="padding: 2rem 0 4rem;">
+  <div class="container">
+
+    <div style="margin-bottom:2rem;">
+      <div class="hero-badge">◈ REAL-TIME THREAT MONITORING DASHBOARD</div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="grid-3" id="stats-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stat-card" style="--accent:var(--neon-cyan);">
+        <div class="stat-icon">👥</div>
+        <div class="stat-num" id="st-users" style="color:var(--neon-cyan);">—</div>
+        <div class="stat-label">TOTAL USERS</div>
+      </div>
+      <div class="stat-card" style="--accent:var(--neon-red);">
+        <div class="stat-icon">🔴</div>
+        <div class="stat-num" id="st-isolated" style="color:var(--neon-red);">—</div>
+        <div class="stat-label">ISOLATED NODES</div>
+      </div>
+      <div class="stat-card" style="--accent:var(--neon-orange);">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-num" id="st-threat" style="color:var(--neon-orange);">—</div>
+        <div class="stat-label">AVG THREAT SCORE</div>
+      </div>
+      <div class="stat-card" style="--accent:var(--neon-purple);">
+        <div class="stat-icon">🧠</div>
+        <div class="stat-num" id="st-attacks" style="color:var(--neon-purple);">—</div>
+        <div class="stat-label">ATTACK PATTERNS</div>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="grid-2" style="margin-bottom:2rem;">
+      <div class="chart-box">
+        <div class="chart-title">◈ THREAT SCORE TREND (7 DAYS)</div>
+        <canvas id="trendChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">◈ RISK DISTRIBUTION</div>
+        <canvas id="riskChart"></canvas>
+      </div>
+    </div>
+
+    <!-- USERS + SUSPICIOUS NODES -->
+    <div class="grid-2" style="margin-bottom:2rem;">
+      <div class="card" style="padding:1.5rem;">
+        <div class="card-header">
+          <span class="card-icon">👤</span>
+          <div><div class="card-title">RECENT USER THREATS</div></div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="cyber-table">
+            <thead>
+              <tr>
+                <th>EMAIL</th>
+                <th>THREAT</th>
+                <th>PWD RISK</th>
+                <th>NET RISK</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody">
+              <tr><td colspan="5" style="text-align:center;color:var(--text-dim);padding:2rem;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div class="card-header">
+          <span class="card-icon">⚠️</span>
+          <div><div class="card-title">SUSPICIOUS NODES</div></div>
+        </div>
+        <div id="suspicious-list">
+          <div style="color:var(--text-dim);font-family:var(--font-mono);font-size:0.75rem;text-align:center;padding:2rem;">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTACK PATTERNS + LOGS -->
+    <div class="grid-2">
+      <div class="card" style="padding:1.5rem;">
+        <div class="card-header">
+          <span class="card-icon">🧠</span>
+          <div><div class="card-title">LEARNED ATTACK PATTERNS</div></div>
+        </div>
+        <div id="patterns-list">
+          <div style="color:var(--text-dim);font-family:var(--font-mono);font-size:0.75rem;text-align:center;padding:2rem;">Loading...</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div class="card-header">
+          <span class="card-icon">📋</span>
+          <div><div class="card-title">SYSTEM LOGS</div></div>
+        </div>
+        <div id="logs-list" style="max-height:320px;overflow-y:auto;">
+          <div style="color:var(--text-dim);font-family:var(--font-mono);font-size:0.75rem;text-align:center;padding:2rem;">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  ◈ SCDS — SMART CYBERSECURITY DETECTION SYSTEM ◈ LIVE THREAT MONITORING
+</footer>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
